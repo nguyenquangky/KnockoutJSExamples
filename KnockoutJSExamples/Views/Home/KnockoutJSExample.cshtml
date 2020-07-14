@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "KnockoutJSExample";
+}
+
+<h2>KnockoutJS Examples</h2>
+<!--Binding Text, Html, CSS, Style, Attr examples-->
+<div class="panel panel-default">
+    <div class="panel-heading">Binding Text, Html data/attr/class/style examples</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Examples go here-->
+                <div id="example1">
+                    <!--Note: -->
+                    <h4>Binding Text:</h4>
+                    Hello <span data-bind="text: name"></span>
+                    <h4>Binding Html data:</h4>
+                    <span data-bind="html: getName()"></span>
+                    <h4>Binding Html attr/class/style:</h4>
+                    <p data-bind="style: { marginBottom: 0, paddingBottom: '1em' }, css: 'myClass'">
+                        This text has custom styles and a CSS class.
+                    </p>
+                    <p data-bind="attr: { id: 'myCustomId' }">
+                        This p tag has an id data bound to it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FOREACH BINDING-->
+<div class="panel panel-default">
+    <div class="panel-heading">Foreach binding/events, With binding examples</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Examples go here-->
+                <div id="example2">
+                    <!--Note: -->
+                    <p>Binding by using html comments</p>
+                    <ul>
+                        <!--Binding by use html comments-->
+                        <!-- ko foreach: books -->
+                        <li data-bind="text: $data"></li>
+                        <!-- /ko -->
+                    </ul>
+                    <p>Binding by using </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>ISBN</th>
+                                <th>Published</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: { data: books2, afterRender: loadImage }">
+                            <tr>
+                                <td>
+                                    <img src="~/images/loading.gif" data-bind="attr: { id: 'image_' + isbn }" />
+                                </td>
+                                <td data-bind="text: title"></td>
+                                <td data-bind="text: isbn"></td>
+                                <td data-bind="text: $parent.formatDate(publishedDate)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>With Binding</p>
+                    <div id="book" data-bind="with: book">
+                        <h1 data-bind="text: title"></h1>
+                        <h2>
+                            Published on <span data-bind="text: $parent.formatDate(publishedDate)">
+                            </span>
+                        </h2>
+                        <p data-bind="text: synposis"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Observable and computed-->
+<div class="panel panel-default">
+    <div class="panel-heading">Observables/computed examples</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Examples go here-->
+                <div id="example3">
+                    <label>First Name</label>
+                    <input type="text" data-bind="value: firstName" />
+                    <label>Last Name</label>
+                    <input type="text" data-bind="value: lastName" />
+                    <label>Full Name</label>
+                    <span data-bind="text: fullName" />
+                </div>
+                <p>Form Binding/events</p>
+                <textarea data-bind="textInput: myText"></textarea><br />
+                Characters remaining: <span data-bind="text: charactersRemaining"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .myClass {
+        color: blue;
+    }
+</style>
+@section scripts {
+    <script src="~/Scripts/knockout-3.5.1.js"></script>
+    <script src="~/Scripts/KOExamples/KOExamples.js"></script>
+}
